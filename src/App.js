@@ -12,34 +12,39 @@ class App extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    if (event.target.type === 'text'){
+    if (event.target.type === 'text') {
       const value = event.target.value;
-      this.setState({ 
+      this.setState({
         name: value,
       });
     }
-    if (event.target.type === 'email'){
+    if (event.target.type === 'email') {
       const value = event.target.value;
-      this.setState({ 
+      this.setState({
         email: value,
       });
     }
-    if (event.target.type === 'tel'){
+    if (event.target.type === 'tel') {
       const value = event.target.value;
-      this.setState({ 
+      this.setState({
         contact: value,
       });
     }
   }
 
+  handleTextAreaChange(event) {
+    this.setState({
+      query: event.target.value
+    })
+  }
+
   handleSubmit(event) {
-    console.log('Name: ' + this.state.name);
-    console.log("Email: " + this.state.email);
-    console.log("Contact: " + this.state.contact)
+    console.log(this.state);
     event.preventDefault();
   }
 
@@ -55,7 +60,7 @@ class App extends React.Component {
 
             <input type="tel" id="eqcontact" name="contact" placeholder="Your Contact" value={this.state.contact} onChange={this.handleChange}></input>
 
-            <textarea id="subject" name="subject" placeholder="Your Query..."></textarea>
+            <textarea id="subject" name="subject" placeholder="Your Query..." value={this.state.query} onChange={this.handleTextAreaChange}></textarea>
 
             <input type="submit" value="Submit"></input>
           </form>
